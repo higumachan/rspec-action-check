@@ -5,7 +5,7 @@ require "rspec/action/check/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "rspec-action-check"
-  spec.version       = Rspec::Action::Check::VERSION
+  spec.version       = Rspec::ActionCheck::VERSION
   spec.authors       = ["Yuta Hinokuma"]
   spec.email         = ["yuta@abeja.asia"]
 
