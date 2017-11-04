@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "rspec/action/check/version"
+require "rspec/actioncheck/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "rspec-action-check"
-  spec.version       = Rspec::ActionCheck::VERSION
+  spec.version       = RSpec::ActionCheck::VERSION
   spec.authors       = ["Yuta Hinokuma"]
   spec.email         = ["yuta@abeja.asia"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{This Gem reduces the indentation of the scenario test}
+  spec.description   = %q{This Gem reduces the indentation of the scenario test}
+  spec.homepage      = "https://github.com/higumachan/rspec-action-check"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
