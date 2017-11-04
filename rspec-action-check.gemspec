@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "rspec-action-check"
   spec.version       = RSpec::ActionCheck::VERSION
   spec.authors       = ["Yuta Hinokuma"]
-  spec.email         = ["yuta@abeja.asia"]
+  spec.email         = ["harekumo792154@gmail.com"]
 
   spec.summary       = %q{This Gem reduces the indentation of the scenario test}
   spec.description   = %q{This Gem reduces the indentation of the scenario test}
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata["allowed_push_host"] = "http://mygemserver.com"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
