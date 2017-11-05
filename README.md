@@ -183,16 +183,16 @@ It output that when It run
 Branch Example
   some actions like a scenario test story with branching
     action:set some_state1 = 100
-      action:branch1
+      branch:branch1
         check:some_state1 = 100
         action:set some_state2 = 200
           check:some_state1 = 100 and some_state2 == 200
-          action:branch in branch1
+          branch:branch in branch1
             action:set some_state3 = 300
               check:some_state1 = 100 and some_state2 == 200 and some_state3 == 300
-          action:branch` in branch1
+          branch:branch` in branch1
             check:some_state1 = 100 and some_state2 == 200 and some_state3 is nil
-      action:branch2
+      branch:branch2
         check:some_state1 = 100 and some_state2 is nil
 ```
 

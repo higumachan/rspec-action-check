@@ -40,7 +40,7 @@ module RSpec
           name = "#{description.gsub(/ /, "_")}_#{__action_dags.size}".to_sym
           before_action_name = __before_action_name
 
-          _update_action_dags(name, description, before_action_name, Proc.new{})
+          _update_action_dags(name, description, before_action_name, Proc.new{}, 'branch')
 
           context do
             _update_before_action_name(name)
@@ -70,7 +70,7 @@ module RSpec
           end
         end
 
-        def _update_action_dags(name, action_description, before_action_name, action_block)
+        def _update_action_dags(name, action_description, before_action_name, action_block, prefix='action')
 
           _action_dags = __action_dags
           _action_dags[name] = {
@@ -86,7 +86,7 @@ module RSpec
           _action_dags[name].merge!({
             forwards: _action_dags[name][:forwards],
             backwards: _action_dags[name][:backwards] | [before_action_name],
-            action: {description: "action:#{action_description}", block: action_block},
+            action: {description: "#{prefix}:#{action_description}", block: action_block},
           })
           _action_dags[before_action_name].merge!({
             forwards: _action_dags[before_action_name][:forwards] | [name],
