@@ -89,7 +89,7 @@ module RSpec
           _action_dags[name].merge!({
             forwards: _action_dags[name][:forwards],
             backwards: _action_dags[name][:backwards] | [before_action_name],
-            action: {description: "action:#{description}", block: action_block},
+            action: {description: "action:#{action_description}", block: action_block},
           })
           _action_dags[before_action_name].merge!({
             forwards: _action_dags[before_action_name][:forwards] | [name],
