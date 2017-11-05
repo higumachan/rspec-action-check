@@ -21,6 +21,24 @@ Or install it yourself as:
 
 ## Usage
 
+### How to use your projects
+
+#### Rails
+
+Please add spec/rails_helper.rb
+
+```ruby
+require 'rspec/actioncheck'
+```
+
+#### Other
+
+Please add spec/spec_helper.rb
+
+```ruby
+require 'rspec/actioncheck'
+```
+
 ### Simple case
 
 You can write that code in spec.
