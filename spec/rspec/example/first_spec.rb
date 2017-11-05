@@ -13,7 +13,7 @@ RSpec.describe 'First Example' do
       expect(@some_state1).to eq 100
     end
 
-    action 'set some_state2 = 100' do
+    action 'set some_state2 = 200' do
       @some_state2 = 200
     end
 

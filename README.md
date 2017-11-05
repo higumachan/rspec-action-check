@@ -59,7 +59,7 @@ RSpec.describe 'First Example' do
       expect(@some_state1).to eq 100
     end
 
-    action 'set some_state2 = 100' do
+    action 'set some_state2 = 200' do
       @some_state2 = 200
     end
 
@@ -77,7 +77,7 @@ First Example
   some actions like a scenario test story
     action:set some_state1 = 100
       check:some_state1 = 100
-      action:set some_state2 = 100
+      action:set some_state2 = 200
         check:some_state2 = 200
 ```
 
