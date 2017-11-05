@@ -2,13 +2,6 @@ module RSpec
   module ActionCheck
     module Helpers
       module ClassMethods
-        def __before_action_name
-          :root
-        end
-        def __action_dags
-          {}
-        end
-
         def create_from_dag(node)
           Proc.new do ||
             node[:forwards].each do |next_node_name|
@@ -27,6 +20,10 @@ module RSpec
 
         def actions(description, &actions_block)
           context description do
+            self.define_singleton_method(:__action_dags) do ||
+              {}
+            end
+            _update_before_action_name(:root)
             before_action_name = __before_action_name
             self.module_exec(&actions_block)
             if __action_dags.empty?
