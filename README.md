@@ -2,7 +2,6 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rspec/actioncheck`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +21,162 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Simple case
+
+You can write that code in spec.
+
+```ruby
+RSpec.describe 'First Example' do
+  before do
+    @some_state1 = nil
+    @some_state2 = nil
+  end
+
+  actions 'some actions like a scenario test story' do
+    action 'set some_state1 = 100' do
+      @some_state1 = 100
+    end
+
+    check 'some_state1 = 100' do
+      expect(@some_state1).to eq 100
+    end
+
+    action 'set some_state2 = 100' do
+      @some_state2 = 200
+    end
+
+    check 'some_state2 = 200' do
+      expect(@some_state2).to eq 200
+    end
+  end
+end
+```
+
+It output that when It run
+
+```rspec
+First Example
+  some actions like a scenario test story
+    action:set some_state1 = 100
+      check:some_state1 = 100
+      action:set some_state2 = 100
+        check:some_state2 = 200
+```
+
+It is same as
+
+```ruby
+RSpec.describe SomeTest do
+  before do
+    @some_state1 = nil
+    @some_state2 = nil
+  end
+
+  context 'some actions like a scenario test story' do
+    context 'action:set some_state1 = 100' do
+      before do
+        @some_state1 = 100
+      end
+
+      it 'check:some_state1 = 100' do
+        expect(@some_state1).to eq 100
+      end
+
+      context 'action:set some_state2 = 200' do
+        before do
+          @some_state1 = 100
+        end
+
+        it 'check:some_state2 = 200' do
+          expect(@some_state2).to eq 200
+        end
+      end
+    end
+  end
+end
+```
+
+First one is more clearly to write story test.
+
+### Branching
+
+You can write that code in spec if you want to branch story.
+
+```ruby
+RSpec.describe 'Branch Example' do
+  before do
+    @some_state1 = nil
+    @some_state2 = nil
+    @some_state3 = nil
+  end
+
+  actions 'some actions like a scenario test story with branching' do
+    action 'set some_state1 = 100' do
+      @some_state1 = 100
+    end
+
+    branch 'branch1' do
+      check 'some_state1 = 100' do
+        expect(@some_state1).to eq 100
+      end
+
+      action 'set some_state2 = 200'
+        @some_state2 = 200
+      end
+
+      check 'some_state1 = 100 and some_state2 == 200' do
+        expect(@some_state1).to eq 100
+        expect(@some_state2).to eq 200
+      end
+
+      branch 'branch in branch1' do
+        action 'set some_state3 = 300'
+           @some_state3 = 300
+        end
+
+        check 'some_state1 = 100 and some_state2 == 200 and some_state3 == 300' do
+          expect(@some_state1).to eq 100
+          expect(@some_state2).to eq 200
+          expect(@some_state3).to eq 300
+        end
+      end
+      branch 'branch` in branch1' do
+        check 'some_state1 = 100 and some_state2 == 200 and some_state3 is nil' do
+          expect(@some_state1).to eq 100
+          expect(@some_state2).to eq 200
+          expect(@some_state3).to be_nil
+        end
+      end
+    end
+
+    branch 'branch2' do
+      check 'some_state1 = 100 and some_state2 is nil' do
+        expect(@some_state1).to eq 100
+        expect(@some_state2).to be_nil
+      end
+    end
+  end
+end
+```
+
+It output that when It run
+
+```
+Branch Example
+  some actions like a scenario test story with branching
+    action:set some_state1 = 100
+      action:branch1
+        check:some_state1 = 100
+        action:set some_state2 = 200
+          check:some_state1 = 100 and some_state2 == 200
+          action:branch in branch1
+            action:set some_state3 = 300
+              check:some_state1 = 100 and some_state2 == 200 and some_state3 == 300
+          action:branch` in branch1
+            check:some_state1 = 100 and some_state2 == 200 and some_state3 is nil
+      action:branch2
+        check:some_state1 = 100 and some_state2 is nil
+```
 
 ## Development
 
