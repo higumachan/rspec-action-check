@@ -1,5 +1,4 @@
 require 'thread_order'
-require 'rspec/actioncheck/helpers'
 require 'rspec/actioncheck'
 
 module RSpec::ActionCheck
