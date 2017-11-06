@@ -6,6 +6,9 @@ RSpec.describe 'Action after branch' do
   end
 
   actions 'some actions like a scenario test story' do
+    action 'start' do
+    end
+
     branch 'branch1' do
       action 'set some_state1 = 100' do
         @some_state1 = 100
@@ -33,11 +36,6 @@ RSpec.describe 'Action after branch' do
 
     action 'set some_state3 = 300' do
       @some_state3 = 300
-    end
-
-    check 'both state is not nil' do
-      expect(@some_state1).not_to be_nil
-      expect(@some_state2).not_to be_nil
     end
 
     check 'some_state3 = 300' do
