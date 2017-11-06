@@ -1,0 +1,23 @@
+// The Round Table
+digraph {
+        S [label=start]
+        A1 [label=branch1]
+        A2 [label="action:set some_state1 = 100"]
+        A3 [label="action:set some_state2 = 200"]
+        B1 [label=branch2]
+        B2 [label="action:set some_state1 = 200"]
+        B3 [label="action:set some_state2 = 100"]
+        C [label="check:both state is not nil"]
+        D [label="action:set some_state3 = 300"]
+        E [label="check:some_state3 = 300"]
+        S -> A1
+        S -> B1
+        A1 -> A2
+        A2 -> A3
+        B1 -> B2
+        B2 -> B3
+        A3 -> C
+        B3 -> C
+        C -> D
+        D -> E
+}
