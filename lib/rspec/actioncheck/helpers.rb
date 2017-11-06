@@ -62,7 +62,6 @@ module RSpec
         end
 
         def action(description, &action_block)
-          p __branch_tail_actions
           before_action_names = (not __branch_tail_actions.empty?) ? __branch_tail_actions : __before_action_names
           name = "#{description.gsub(/ /, "_")}_#{__action_dags.size}".to_sym
 
@@ -75,9 +74,7 @@ module RSpec
         end
 
         def check(description, &action_block)
-          p __branch_tail_actions
           check_action_names = (not __branch_tail_actions.empty?) ? __branch_tail_actions : __before_action_names
-          p __branch_tail_actions
 
           check_action_names.each do |check_action_name|
             _action_dags = __action_dags
